@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Proxy Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.9), 0 0 50px rgba(59, 130, 246, 0.6); }
+        }
+        .cta-btn {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-item {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-gray-900 to-blue-950 text-white min-h-screen flex flex-col items-center justify-between p-4 font-sans">
+
+    <!-- Top Header / Live Counter -->
+    <div class="w-full max-w-md flex justify-between items-center bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-blue-500/30 shadow-lg mb-4 text-xs">
+        <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="text-emerald-400 font-medium">Server Online</span>
+        </div>
+        <div class="text-gray-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-users text-blue-400"></i>
+            <span>Active Users: <strong id="online-count" class="text-white">1,428</strong></span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="w-full max-w-md bg-slate-900/90 backdrop-blur-xl border border-blue-500/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center p-6 text-center">
+        
+        <!-- Logo -->
+        <div class="relative mb-4">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-50"></div>
+            <img src="https://i.ibb.co/zCkQmLg/file-00000000bb4082088830b2ef6fde874.png" alt="VIP Proxy Server Logo" class="relative w-24 h-24 rounded-full object-cover border-2 border-blue-400/50 shadow-lg">
+        </div>
+
+        <!-- Title & Headline -->
+        <h1 class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-1">VIP Proxy Server</h1>
+        <p class="text-sm text-gray-400 mb-6 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-shield-halved text-blue-500"></i> Watch Full Video & Get Access
+        </p>
+
+        <!-- Video Player Box -->
+        <div class="w-full aspect-video bg-black rounded-xl overflow-hidden border border-slate-700 shadow-inner mb-6 relative group">
+            <video id="promoVideo" class="w-full h-full object-cover" autoplay muted loop playsinline controls>
+                <source src="https://videotourl.com/videos/1790194360765-d3d1e187-49e8-46da-acb8-bcd9c7f043b6.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="https://jito777.games/landing?ch=114&fbPixel=4475782945967684" target="_blank" class="w-full cta-btn bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-3 text-base uppercase tracking-wider">
+            <i class="fa-solid fa-key text-lg"></i>
+            GET PROXY SERVER
+        </a>
+    </div>
+
+    <!-- Live Recent Activity / Comments Ticker -->
+    <div class="w-full max-w-md mt-4 bg-slate-900/60 backdrop-blur-md rounded-xl border border-slate-800 p-3 shadow-md">
+        <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center justify-between border-b border-slate-800 pb-1">
+            <span><i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Live Success Feed</span>
+            <span class="text-emerald-400 animate-pulse">● Live</span>
+        </div>
+        <div id="chat-container" class="space-y-2 h-20 overflow-hidden text-left text-xs">
+            <!-- Dynamic items will be added here via JS -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-4 text-[11px] text-gray-500 text-center">
+        &copy; 2026 VIP Proxy Server. Secure & Encrypted Connection.
+    </footer>
+
+    <script>
+        // Random Online User Fluctuation
+        setInterval(() => {
+            const countElem = document.getElementById('online-count');
+            let current = parseInt(countElem.innerText.replace(',', ''));
+            let change = Math.floor(Math.random() * 11) - 5; // -5 to +5
+            let newCount = Math.max(1200, current + change);
+            countElem.innerText = newCount.toLocaleString();
+        }, 3000);
+
+        // Live Chat / Feedback Messages Simulation
+        const names = ["Rahul_99", "Amit_FF", "Deepak_X", "Sahil_Pro", "Vicky_07", "Rohit_Gamer", "Karan_94", "Ankit_Op"];
+        const messages = [
+            "Mil gaya bhai, working hai! 🔥",
+            "Thanks bro, connect ho gaya ek baar mein.",
+            "Awesome speed mil rahi hai proxy se.",
+            "Arre bhai ekdum sahi trick hai, mil gaya!",
+            "Thanks a lot, working flawlessly.",
+            "Got it! 🔥🔥"
+        ];
+
+        function addChatMessage() {
+            const container = document.getElementById('chat-container');
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            
+            const div = document.createElement('div');
+            div.className = "chat-item flex items-center justify-between bg-slate-800/40 px-2.5 py-1.5 rounded-lg border border-slate-700/40";
+            div.innerHTML = `
+                <span class="text-blue-300 font-medium">@${randomName}</span>
+                <span class="text-gray-300">${randomMsg}</span>
+            `;
+
+            container.prepend(div);
+            if (container.children.length > 3) {
+                container.lastChild.remove();
+            }
+        }
+
+        // Add initial messages
+        addChatMessage();
+        setTimeout(addChatMessage, 1500);
+
+        // Periodically add new message
+        setInterval(addChatMessage, 3500);
+    </script>
+</body>
+</html>
