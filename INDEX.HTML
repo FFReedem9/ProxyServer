@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Proxy Server - Fiery Quantum Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fire-glow {
+            0%, 100% { 
+                box-shadow: 0 0 25px rgba(249, 115, 22, 0.7), 0 0 50px rgba(236, 72, 153, 0.4), inset 0 0 20px rgba(249, 115, 22, 0.4); 
+            }
+            50% { 
+                box-shadow: 0 0 45px rgba(249, 115, 22, 0.95), 0 0 90px rgba(236, 72, 153, 0.7), inset 0 0 35px rgba(236, 72, 153, 0.6); 
+            }
+        }
+        .cta-btn {
+            animation: fire-glow 2s infinite ease-in-out;
+        }
+        @keyframes floatEffect {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .floating-card {
+            animation: floatEffect 4s ease-in-out infinite;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .chat-item {
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* Fiery Holographic Dynamic Background */
+        body {
+            background-color: #03000a;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(249, 115, 22, 0.16) 0px, transparent 40%),
+                radial-gradient(at 90% 10%, rgba(236, 72, 153, 0.16) 0px, transparent 40%),
+                radial-gradient(at 50% 90%, rgba(147, 51, 234, 0.16) 0px, transparent 40%);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(249, 115, 22, 0.5);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex flex-col items-center justify-between p-4 font-sans selection:bg-orange-500 selection:text-white">
+
+    <!-- Top Header / Live Counter -->
+    <div class="w-full max-w-md flex justify-between items-center bg-slate-950/75 backdrop-blur-2xl px-4 py-2.5 rounded-2xl border border-orange-500/30 shadow-[0_8px_32px_rgba(249,115,22,0.15)] mb-3 text-xs">
+        <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+            </span>
+            <span class="text-orange-400 font-bold tracking-wider uppercase text-[10px]">Fiery Node: Online</span>
+        </div>
+        <div class="text-gray-300 flex items-center gap-1.5 font-medium">
+            <i class="fa-solid fa-users-viewfinder text-amber-400"></i>
+            <span>Active: <strong id="online-count" class="text-white font-mono text-orange-300">3,654</strong></span>
+        </div>
+    </div>
+
+    <!-- Main Card Container with Fiery Border -->
+    <div class="w-full max-w-md bg-slate-950/85 backdrop-blur-3xl border border-orange-500/40 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col items-center p-6 text-center relative floating-card">
+        
+        <!-- Glowing Ambient Lighting FX -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-600/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-pink-600/25 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Logo with Fiery Rings -->
+        <div class="relative mb-4">
+            <div class="absolute -inset-2.5 bg-gradient-to-r from-orange-500 via-pink-600 to-amber-400 rounded-full blur-md opacity-80 animate-pulse"></div>
+            <img src="https://i.ibb.co/zCkQmLg/file-00000000bb4082088830b2ef6fde874.png" alt="VIP Proxy Server Logo" class="relative w-24 h-24 rounded-full object-cover border-2 border-orange-400/80 shadow-2xl">
+        </div>
+
+        <!-- Title & Headline -->
+        <h1 class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-300 to-amber-300 mb-1 drop-shadow-lg">VIP Proxy Server</h1>
+        <p class="text-xs text-gray-400 mb-5 flex items-center justify-center gap-1.5 font-medium">
+            <i class="fa-solid fa-shield-virus text-orange-400"></i> Encrypted High-Speed Tunnel
+        </p>
+
+        <!-- Video Player Box with VFX Overlay -->
+        <div id="video-wrapper" class="w-full aspect-video bg-black rounded-2xl overflow-hidden border border-orange-500/40 shadow-2xl mb-6 relative group cursor-pointer">
+            <video id="promoVideo" class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline>
+                <source src="https://videotourl.com/videos/1790194360765-d3d1e187-49e8-46da-acb8-bcd9c7f043b6.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Tap to Unmute Overlay -->
+            <div id="unmute-badge" class="absolute inset-0 bg-slate-950/70 backdrop-blur-[4px] flex flex-col items-center justify-center transition-opacity duration-300">
+                <div class="bg-gradient-to-r from-orange-600 to-pink-600 hover:from-orange-500 hover:to-pink-500 text-white px-5 py-3 rounded-2xl text-xs font-black flex items-center gap-2.5 shadow-[0_0_25px_rgba(249,115,22,0.7)] border border-orange-400/60">
+                    <i class="fa-solid fa-volume-high text-amber-200 animate-bounce text-base"></i>
+                    <span>TAP ANYWHERE TO UNMUTE & PLAY</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ultra CTA Button with Fiery Orange Gradient & Tracking Link (ch=110) -->
+        <a href="https://jito777.games/landing?ch=110&fbPixel=2164132601188252" target="_blank" class="w-full cta-btn bg-gradient-to-r from-orange-500 via-rose-600 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-black py-4 px-6 rounded-2xl shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-3 text-base uppercase tracking-wider border border-orange-400/60">
+            <i class="fa-solid fa-key text-lg text-amber-200 animate-pulse"></i>
+            GET PROXY SERVER
+        </a>
+    </div>
+
+    <!-- Live Recent Activity / Success Feed Ticker -->
+    <div class="w-full max-w-md mt-3 bg-slate-950/75 backdrop-blur-xl rounded-2xl border border-orange-500/25 p-3 shadow-xl">
+        <div class="text-[11px] text-orange-300 font-bold mb-2 flex items-center justify-between border-b border-orange-500/20 pb-1.5 uppercase tracking-wider">
+            <span><i class="fa-solid fa-fire text-orange-400 mr-1 animate-bounce"></i> Real-Time Activity</span>
+            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[10px]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Live Ticker</span>
+        </div>
+        <div id="chat-container" class="space-y-2 h-20 overflow-hidden text-left text-xs">
+            <!-- Dynamic entries injected via JS -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-3 text-[11px] text-gray-500 text-center font-medium">
+        &copy; 2026 VIP Proxy Server. Fiery Secured.
+    </footer>
+
+    <script>
+        // Unmute Video on any click / touch on the page
+        let isUnmuted = false;
+        document.body.addEventListener('click', () => {
+            if (!isUnmuted) {
+                const video = document.getElementById('promoVideo');
+                const badge = document.getElementById('unmute-badge');
+                video.muted = false;
+                video.volume = 1.0;
+                if(badge) badge.style.opacity = '0';
+                setTimeout(() => { if(badge) badge.remove(); }, 300);
+                isUnmuted = true;
+            }
+        });
+
+        // Random Online User Count Fluctuation
+        setInterval(() => {
+            const countElem = document.getElementById('online-count');
+            let current = parseInt(countElem.innerText.replace(',', ''));
+            let change = Math.floor(Math.random() * 15) - 7;
+            let newCount = Math.max(3300, current + change);
+            countElem.innerText = newCount.toLocaleString();
+        }, 2500);
+
+        // Live Chat / Feedback Messages Simulation
+        const names = ["Vortex_Op", "CyberKing", "Zeta_99", "Shadow_X", "Nexus_Pro", "Phantom_07", "Rogue_FF", "AlphaNode", "Matrix_99", "KaranVIP"];
+        const messages = [
+            "Mil gaya bhai, ping 10ms ho gaya! 🔥",
+            "Ekdam smooth chal raha hai, thanks bro.",
+            "Instant proxy access mil gaya ⚡",
+            "Arre bhai kasam se working trick hai!",
+            "Thanks a lot, successfully connected.",
+            "Got the proxy! 🔥🔥",
+            "Mast speed aa rahi hai, maza aa gaya!"
+        ];
+
+        function addChatMessage() {
+            const container = document.getElementById('chat-container');
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            
+            const div = document.createElement('div');
+            div.className = "chat-item flex items-center justify-between bg-gradient-to-r from-orange-950/40 to-pink-950/40 px-3 py-1.5 rounded-xl border border-orange-500/20 shadow-sm";
+            div.innerHTML = `
+                <span class="text-orange-300 font-semibold font-mono">@${randomName}</span>
+                <span class="text-gray-200 font-medium">${randomMsg}</span>
+            `;
+
+            container.prepend(div);
+            if (container.children.length > 3) {
+                container.lastChild.remove();
+            }
+        }
+
+        // Add initial entries
+        addChatMessage();
+        setTimeout(addChatMessage, 900);
+
+        // Periodically add new success message
+        setInterval(addChatMessage, 2800);
+    </script>
+</body>
+</html>
